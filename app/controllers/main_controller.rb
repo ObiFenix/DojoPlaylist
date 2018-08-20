@@ -50,7 +50,7 @@ class MainController < ApplicationController
       # @errors = flash@user.errors.full_messages
       # notice: 'User was successfully created.'
       session["user_id"] = @user.id
-      redirect_to "/events"
+      redirect_to root_path
     end
   end
 
@@ -79,61 +79,6 @@ class MainController < ApplicationController
       end
     end
   end
-
-
-  # # =============================
-  # # GET Request - Renders [.html]
-  # # =============================
-  # def show
-  #   @user = User.find(params[:id])
-  #   @this_song = Dojo.find(params[:dojo_id])
-  #   @this_user = "#{@user.first_name} #{@user.last_name}"
-  #
-  #   # ----------- [ Put in Session ]
-  #   session[:page] = "user"
-  #   session[:song_id] = @this_song.id
-  #   # ------------------------------
-  #   # print "\n\n\n=========\n", @dojo
-  #   # print "\n\n\n=========\n", @user
-  # end
-
-
-  # =============================
-  # GET Request - Renders [.html]
-  # =============================
-  # def edit
-  #   @allsongs = Song.all
-  #   @edit_dojo = User.find(params[:dojo_id])
-  #   @user = User.find(params[:id])
-  #   @this_user = "#{@user.first_name} #{@user.last_name}"
-  #
-  #   # -------------------------------- [ Put in Session ]
-  #   session[:page] = "user"
-  #   session[:user_id] = params[:dojo_id]
-  #   session[:user_id] = params[:id]
-  #   session[:branch] = Dojo.find(params[:dojo_id]).branch
-  #   # ---------------------------------------------------
-  #   render "edit"
-  # end
-
-
-  # =========================
-  # PATCH/PUT Request [.html]
-  # PATCH/PUT Request [.json]
-  # =========================
-  # def update
-  #   @user = User.find(params[:id])
-  #   respond_to do |format|
-  #     if @user.update(validate_params)
-  #       # format.html { redirect_to dojo_user_url, notice: 'User was successfully updated.' }
-  #       format.html { redirect_to "/users/#{params[:user_id]}/users/#{params[:id]}", notice: 'User was successfully updated.' }
-  #       format.json { render :show, status: :ok, location: @user }
-  #     else
-  #       format.html { render :edit }
-  #       format.json { render json: @user.errors, status: :unprocessable_entity }
-  #     end
-  #   end
-  # end
 
 
   # ===============================

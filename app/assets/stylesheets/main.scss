@@ -1,9 +1,5 @@
 // Navbar section
-nav {
-    background-color:#000;
-    padding: 0 4rem;
-    a:hover { color: tan;  }
-}
+
 html,body { width: auto; height: auto;}
 body {
     // position: static;
@@ -13,24 +9,34 @@ body {
     background-image: url('http://getwallpapers.com/wallpaper/full/8/4/d/427490.jpg')
 }
 
-nav a { color: white; }
-nav a img {
-    width: 100px;
-    height: 40px;
-    margin: 0.5rem 0;
-    border-style: none;
-}
 
-nav a:hover { color: #06a9e2; cursor: pointer; }
+nav {
+  // border-bottom: 2px dot #06a9e2 !important;
+  border-bottom: 2px dot purple !important;
+  background-color:#000;
+  color: white;
+  padding: 0 2rem;
+  a {
+    text-decoration: none !important;
+    &:hover { cursor: pointer; color: #06a9e2; }
+    img {
+        width: 100px;
+        height: 40px;
+        margin: 0.5rem 0;
+        border-style: none;
+    }
+  }
+}
 
 h1, h2, ._header {
-    font-family: 'Fredoka One', cursive;
-    text-align: center;
-    color: #06a9e2;
-    margin: 4rem 0 2rem;
-    position: relative;
+  font-family: 'Fredoka One', cursive;
+  text-align: center;
+  color: #06a9e2;
+  margin: 0rem;
+  margin-top: 2rem;
+  position: relative;
+  span { color: #06a9e2; font-family: 'Poiret One', cursive; }
 }
-h1 span { color: #06a9e2; font-family: 'Poiret One', cursive; }
 
 #notice {
     padding: 0.5rem  2rem;
@@ -46,7 +52,7 @@ ul .form-row { padding-left: 4rem !important; }
 
 
 // Table Section
-.theader      { color: #06a9e2; font-family: 'Poiret One', cursive; }
+.theader      { font-family: Montserrat, cursive; }
 .trbody       { font-family: 'Poiret One', cursive; }
 .trbody > td  { padding: 0.2rem; }
 .trbody > td:last-child > a { margin: 0.1rem auto;  width: 5rem; }
@@ -56,14 +62,18 @@ ul .form-row { padding-left: 4rem !important; }
     margin: 0rem auto;
     display: inline-table !important;
 }
+.usr > td:nth-child(2)  { font-weight: bolder; font-style: oblique; color: #81c784 !important; }
+.trbody > td > a { font-size: normal; }
+.trbody > td > a:hover { font-weight: bolder; font-style: oblique; color: #81c784 !important; }
 .trbody:hover { color: #06a9e2; background-color: #0000006b !important; }
 .scrolling-wrapper {
     -webkit-overflow-scrolling: touch;
+    margin: 1rem auto !important;
+    height: 400px !important;
     padding-bottom: 12rem;
     overflow-y: scroll;
     position:relative;
     opacity: 0.8;
-    height: 300px !important;
     width: 100%;
     // z-index: -1;
   }
@@ -72,10 +82,42 @@ ul .form-row { padding-left: 4rem !important; }
 
 
 // Container section
-.container { min-height: 60% !important; width: 60%; background-color: #171414e3; color: #f5f5f5; padding: 4rem 2rem; margin: 0rem auto; position: relative;}
-.container-min { height: 400px; width: 58%; background-color: #171414e3; color: #f5f5f5; padding: 1rem 2rem; margin: 1rem auto !important; position: relative;}
-.container-max { height: 600px; min-height: 70%; width: 50%; background-color: #171414e3; color: #f5f5f5; padding: 4rem 2rem; margin: 0rem auto; position: relative;}
-// .container h1 { margin-top: 2rem; }
+.container {
+  min-height: 60% !important;
+  width: 60%;
+  background-color: #171414e3;
+  color: #f5f5f5;
+  padding: 1rem 2rem;
+  margin: 0rem auto; position: relative;
+}
+.container-add {
+  width: 65%;
+  height: 330px;
+  color: #f5f5f5;
+  padding: 1rem 2rem;
+  background-color: #171414e3;
+  transition: all 1s ease-in-out !important;
+  margin: 1rem auto !important; position: relative;
+}
+.container-info {
+  min-height: 60% !important;
+  width: 65%;
+  padding: 2rem;
+  padding-top: 4rem;
+  color: #f5f5f5;
+  background-color: #171414e3;
+  margin: 0rem auto; position: relative;
+}
+
+.container-error {
+  min-height: 60% !important;
+  background-color: #171414e3;
+  color: #f5f5f5;
+  width: 60%;
+  margin: 0rem auto;
+  position: relative;
+  padding: 6rem 2rem 1rem;
+}
 
 .flxend { display: flex; justify-content: end; }                                // div container requiring flex
 .flexed { display: flex; justify-content: space-between; }                      // div container requiring flex
@@ -137,6 +179,7 @@ ul .form-row { padding-left: 4rem !important; }
     border-radius: 1rem;
     font-size: 10px;
     color: lime;
+    width: 5rem;
     &:hover {
         color: white !important;
         background-color: green !important;

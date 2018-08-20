@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   post 'main/register' => 'main#register'
   post 'main/login' => 'main#login'
   delete 'logout' => 'main#logout'
-  # delete ''
 
   post 'playlist/:id' => 'playlists#add_to_playlist'
   delete 'playlist/:id' => 'playlists#add_to_playlist'

@@ -1,8 +1,41 @@
-<!-- USER LOGIN & REGISTRATION PAGE COMPONENT -->
 
-<div class="container">
-    <% if notice %><p id="notice"><%= notice %></p><% end %>
-    <% if session['form'] == 'login' %><%= render "login_form" %>
-    <% else %>                         <%= render "register_form" %>
+<!--
+[ USER LOGIN & REGISTRATION PAGE COMPONENT ]
+-->
+
+<!--
+[ Error Display... if any ]
+-->
+<div id="error_explanation" class="container-error" style="margin-bottom:0;">
+  <% if flash[:errors] %>
+  <h6>
+    <span class="blue-text"><%= pluralize(flash[:errors].count, "error") %></span>
+    prohibited this user from being saved:
+  </h6>
+  <ul>
+    <% flash[:errors].each do |message| %>
+    <li class="red-text"><span class="blue-text right-margin1">&#187;</span><%= message %></li>
     <% end %>
+  </ul>
+  <% end %>
+</div>
+
+
+<!--
+[ Main Container - Login & Registration ]
+-->
+<div class="container">
+  <!--
+  [ Notification Activities ]
+  -->
+  <div style="margin:4rem">
+    <% if notice %><p id="notice"><%= notice %></p><% end %>
+  </div>
+
+  <!--
+  [ Login & Registration Session Controller ]
+  -->
+  <% if session['form'] == 'login' %><%= render "login_form" %>
+  <% else %>                         <%= render "register_form" %>
+  <% end %>
 </div>

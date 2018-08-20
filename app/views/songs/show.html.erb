@@ -1,3 +1,6 @@
+<!--
+[Navbar - Song Component ]
+-->
 <nav class="dark" style="position:fixed; z-index:1000;">
   <div class="nav-wrapper">
     <% if current_user %>
@@ -12,9 +15,11 @@
   </div>
 </nav>
 
-<!--======================================================== [ Error Display... if any ] -->
+<!--
+[ Error Display... if any ]
+-->
 <% if flash[:errors] %>
-<div id="error_explanation" class="container" style="margin-bottom:0;">
+<div id="error_explanation" class="container-error" style="margin-bottom:0;">
     <h5>
         <span class="blue-text"><%= pluralize(flash[:errors].count, "error") %></span>
         prohibited this user from being saved:
@@ -26,35 +31,34 @@
     </ul>
 </div>
 <% end %>
-<!-- ============================================================= -->
 
+<!--
+[ Main Container - Song Component ]
+-->
 <div class="container">
-  <div class="col s12 col-sm-12">
+  <div class="col s12 col-sm-12" style="margin-top:6rem;">
     <h2>Others Who Added
       <span class="grey-text"><%= @this_song.artist %></span> -
       <span class="white-text"><%= @this_song.title %></span>
     </h2>
 
-    <table class="highlight">
-      <thead class="thdark">
-      <tr>
-          <th class="white-text">Name       </th>
-          <th class="white-text">Times Added</th>
-      </tr>
-      </thead>
-      <tbody>
-        <% @playlist.each do |song| %>
-        <tr class="trbody">
-            <td>
-              <a href="<%= user_url(User.find(song.user_id)) %>">
-                <%= User.find(song.user_id).first_name %>
-                <%= User.find(song.user_id).last_name %>
-              </a>
-            </td>
-            <td><%= Playlist.where(user_id: song.user_id).where(song_id: song.song_id).count%></td>
-        </tr>
-        <% end %>
-      </div>
-    </tbody>
-  </table>
+    <div class="scrolling-wrapper">
+      <table class="highlight">
+        <thead class="thdark">
+          <tr>
+            <th class="white-text theader">Name       </th>
+            <th class="white-text theader">Times Added</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @this_song.users.select(:first_name, :last_name, :email, :id).group(:first_name, :last_name, :email, :id).having("count(*) >= 1").size.each do |key, value| %>
+            <tr class="trbody">
+              <td> <a href="/users/<%= key[3] %>" class="light-blue-text text-accent-2"><%= key[0] %> <%= key[1] %></a> </td>
+              <td><%= @this_song.users.where(email: key[2]).count %></td>
+            </tr>
+          <% end %>
+        </div>
+      </tbody>
+    </table>
+  </div>
 </div>

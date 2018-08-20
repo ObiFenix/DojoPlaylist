@@ -2,7 +2,8 @@ class UsersController < ApplicationController
 
   before_action :set_user, only: [:first_name, :last_name, :email, :password, :password_confirmation]
 
-  # =============================
+  # ===================
+  # GET Request [.html]
   # Switch Controller for Log/Reg
   # =============================
   def switch
@@ -15,14 +16,15 @@ class UsersController < ApplicationController
   end
 
 
-  # =====================================
+  # ====================
+  # POST Request [.html]
   # Handles User Login <users/login> form
   # =====================================
   def login
     @user = User.find_by_email(params[:email])
     if @user and @user.authenticate(params[:password])
       session["user_id"] = @user.id
-      redirect_to "/events"
+      redirect_to songs_path
     else
       flash[:errors] = ["Invalid login information!"]
       redirect_to :back
@@ -30,7 +32,8 @@ class UsersController < ApplicationController
   end
 
 
-  # ===============================================
+  # ====================
+  # POST Request [.html]
   # Handles User Registration <users/register> form
   # ===============================================
   def register
@@ -41,7 +44,7 @@ class UsersController < ApplicationController
     else
       # @errors = flash@user.errors.full_messages
       session["user_id"] = @user.id
-      redirect_to "/events"
+      redirect_to songs_path
     end
   end
 
@@ -51,24 +54,6 @@ class UsersController < ApplicationController
   # =============================
   def new
     @user = User.new
-  end
-
-
-  # ====================
-  # POST Request [.html]
-  # POST Request [.json]
-  # ====================
-  def create
-    @user = User.create(validate_params)
-    respond_to do |format|
-      if @user.valid?
-        format.html { redirect_to "/", notice: 'User was successfully created.' }
-        format.json { redirect_to :back, status: :created, location: @user }
-      else
-        format.html { redirect_to :back }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
 
@@ -82,21 +67,20 @@ class UsersController < ApplicationController
   end
 
 
-
-  # ===============================
+  # ============================
   # DELETE request for </logout>
   # >> This shall terminate session
   # ===============================
   def logout
     reset_session
     respond_to do |format|
-      format.html { redirect_to '/', notice: 'User was successfully logged out.' }
+      format.html { redirect_to root_path, notice: 'User was successfully logged out.' }
       format.json { head :no_content }
     end
   end
 
 
-  # ===================
+  # ==============
   # DELETE /user/1
   # DELETE /user/1.json
   # ===================
