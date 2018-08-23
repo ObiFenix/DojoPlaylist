@@ -5,14 +5,22 @@ class PlaylistsController < ApplicationController
     redirect_to songs_path
   end
 
-
-  # ======================
-  # DELETE Request [.html]
+  # ==========================
+  # DELETE ONE Request [.html]
   # DELETE Request [.json]
   # ======================
-  def remove_from_playlist
-    current_user.playlists.where(song_id: params[:id]).delete
-    redirect_to "/songs"
+  def remove_one_from_playlist
+    Playlist.where(user_id:current_user.id, song_id:params[:id]).first.delete
+    redirect_to "/users/#{current_user.id}"
+  end
+
+  # ==========================
+  # DELETE All Request [.html]
+  # DELETE Request [.json]
+  # ======================
+  def remove_all_from_playlist
+    Playlist.where(user_id:current_user.id, song_id:params[:id]).delete_all
+    redirect_to "/users/#{current_user.id}"
   end
 
   private

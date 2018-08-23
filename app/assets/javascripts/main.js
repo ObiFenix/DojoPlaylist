@@ -17,4 +17,13 @@ $(document).ready(function(){
     }, 1500,'easeInOutExpo');
     e.preventDefault();
   });
+  
+  // Handles DELETE_ALL request from a form
+  var delete_all = document.getElementById('delete_all');
+  delete_all.onsubmit = function(e){
+    var form = this;
+    e.preventDefault();
+    if(confirm("Are you sure you wish to remove all?"))
+      form.submit();
+  }
 });

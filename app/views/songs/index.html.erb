@@ -4,9 +4,9 @@
 <nav class="dark" style="position:fixed; z-index:1000;">
   <div class="nav-wrapper">
     <% if current_user %>
-    <a href="/songs"><img src="/assets/codingdojo.png"</a>
+    <a href="/songs"><h4 class="_logo">DOJO<span>PLAYLIST</span></h2></a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a href="/users/<%= current_user.id %>" class="grey-text">Welcome <span class="light-blue-text"><%= current_user.first_name %></span></a></li>
+      <li><a href="/users/<%= current_user.id %>" class="grey-text"><span class="light-blue-text"><%= current_user.first_name %></span>Playlist</a>
       <li><a href="#addform">Add a Song</a></li>
       <li><%= link_to "Log out", "/logout", data: { method: :delete, confirm: "Are you sure?"} %></li>
     </ul>
@@ -14,27 +14,19 @@
   </div>
 </nav>
 
-<!--
-[ Error Display... if any ]
--->
-<% if flash[:errors] %>
-<div id="error_explanation" class="container-error" style="margin-bottom:0;">
-  <h5>
-    <span class="blue-text"><%= pluralize(flash[:errors].count, "error") %></span>
-    prohibited this user from being saved:
-  </h5>
-  <ul>
-    <% flash[:errors].each do |message| %>
-    <li class="red-text"><span class="blue-text right-margin1">&#187;</span><%= message %></li>
-    <% end %>
-  </ul>
-</div>
-<% end %>
 
 <!--
 [ Main Container - Main Component ]
 -->
-<div class="container-info">
+<div class="container-hub">
+
+    <div class="row">
+      <p  class="grey-text">
+        <h3 class="mt-3"> Welcome 
+          <span class="light-blue-text"><%= current_user.first_name %>
+        </span></h3>
+      </p>
+    </div>
 
     <% if notice %>
     <p id="notice"><%= notice %></p>
@@ -44,11 +36,11 @@
     <div class="scrolling-wrapper">
       <table class="highlight">
         <thead class="thdark">
-          <tr class="white-text">
-              <th class="theader">Artist </th>
-              <th class="theader">Title  </th>
-              <th class="theader">No. of Time This Song Has Been Added</th>
-              <th class="theader">Actions</th>
+          <tr class="white-text trheader">
+              <th class="">Artist </th>
+              <th class="">Title  </th>
+              <th class="">No. of Times This Song's Been Added</th>
+              <th class="">Actions</th>
           </tr>
           </thead>
           <tbody>
@@ -61,7 +53,7 @@
                       <td class="">
                           <form action="/playlist/<%= song.id %>" method="post">
                               <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
-                              <input type="submit" value="Add" from playlist"" class="btn-small sn show">
+                              <input type="submit" value="Add to Playlist" from playlist"" class="btn-small sn add-one">
                           </form>
                       </td>
                   </tr>
@@ -74,30 +66,51 @@
 
 <div class="container-add">
 
+    <!--
+    [ Error Display... if any ]
+    -->
+    <% if flash[:errors] %>
+    <div id="error_explanation" class="" style="margin-bottom:0;">
+      <h5>
+        <span class="blue-text"><%= pluralize(flash[:errors].count, "error") %></span>
+        prohibited this user from being saved:
+      </h5>
+        <ul>
+          <% flash[:errors].each do |message| %>
+          <li class="red-text"><span class="blue-text right-margin1">&#187;</span><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
     <div class="col s6">
     <!--
     Redirect to Create New Dojo Page
     -->
-    <h2 style="margin-top:1.2rem;">ADD <span class="white-text">SONG</span></h2>
+    <h2 style="margin-top:1.2rem;">
+      A<span class="white-text">DD </span>
+      N<span class="white-text">EW </span>
+      S<span class="white-text">ONG</span>
+   </h2>
 
     <div class="row">
       <form id="addform" class="col s12" action="/songs" method="POST">
           <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
 
-          <div class="row">
+          <div class="rows">
               <div class="input-field col s10 col-sm-12">
                   <input placeholder="" id="title" name="song[title]" type="text" class="validate white-text" value="Thriller" style="font-size:16px;">
                   <label for="name">Title</label>
               </div>
           </div>
-          <div class="row">
+          <div class="rows">
               <div class="input-field col s10 col-sm-12">
                   <input placeholder="" id="artist" name="song[artist]" type="text" class="validate white-text" value="Michael Jackson" style="font-size:16px;">
                   <label for="name">Artist</label>
               </div>
           </div>
 
-          <button class="btn waves-effect sn" type="submit" name="action">Add Song
+          <button class="btn waves-effect sn" style="margin-top:11rem;" type="submit" name="action">Add Song
               <i class="material-icons right blue-text">send</i>
           </button>
       </form>

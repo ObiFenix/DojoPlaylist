@@ -14,25 +14,31 @@
   </head>
 
   <body class="">
+    <div id="body">
     <!--
     [ Navbar - Login and Registration Component ]
     -->
-    <nav class="dark" style="position:fixed; z-index:1000;">
+    <% unless current_user %>
+    <nav class="dark">
       <div class="nav-wrapper">
-        <% unless current_user %>
-        <a href="/"><img src="/assets/codingdojo.png"</a>
+        <a href="/"><h4 class="_logo">DOJO<span>PLAYLIST</span></h2></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <% if session["form"] == "login"%>
           <li><a href="/main/sw">Register</a></li><% else %>
           <li><a href="/main/sw">Login</a></li><% end %>
         </ul>
-        <% end %>
       </div>
     </nav>
+    <% end %>
 
     <%= yield %>
 
     <!-- Required JS Files -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+  </div>
   </body>
+    <footer class="page-footer" style="margin-top: 10rem;">
+      <p class="text-info">© <small class="grey-text text-lighten-1">2018 ObiFenix</small></p>
+      <p><img class="logo" src="/assets/codingdojo.png" /></p>
+    </footer>
 </html>
