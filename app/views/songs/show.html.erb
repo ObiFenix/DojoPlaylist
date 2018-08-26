@@ -19,7 +19,7 @@
 [ Main Container - Song Component ]
 -->
 <div class="container-info">
-  <div class="col s12 col-sm-12" style="margin-top:6rem;">
+  <div class="col s12">
     <h2>Others Who Added
       <span class="grey-text"><%= @this_song.artist %></span> -
       <span class="white-text"><%= @this_song.title %></span>
@@ -40,8 +40,8 @@
               <td><%= @this_song.users.where(email: key[2]).count %></td>
             </tr>
           <% end %>
-        </div>
-      </tbody>
-    </table>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
