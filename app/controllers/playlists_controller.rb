@@ -11,7 +11,8 @@ class PlaylistsController < ApplicationController
   # DELETE Request [.json]
   # ======================
   def remove_from_playlist
-    current_user.playlists.where(song_id: params[:id]).delete
+    # current_user.playlists.where(song_id: params[:id]).delete
+    current_user.playlists.delete(Playlist.find(params[:id])
     redirect_to "/songs"
   end
 

@@ -24,6 +24,7 @@
             <th class="theader">Artist     </th>
             <th class="theader">Title      </th>
             <th class="theader">Times Added</th>
+            <th class="theader">Actions</th>
           </tr>
           </thead>
           <tbody>
@@ -32,6 +33,13 @@
                 <td><%= key[0] %></td>
                 <td><%= key[1] %></td>
                 <td><%= @user.songs_added.where(id: key[2]).count %></td>
+                <td>
+                  <form action="/playlist/<%= song.id %>" method="post">
+                    <input type="hidden" name="_method" value="delete" />
+                    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+                    <input type="submit" value="Remove from Playlist" from playlist"" class="btn-small sn delete">
+                  </form>
+                </td>
               </tr>
             <% end %>
           </tbody>
