@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   delete 'logout' => 'main#logout'
 
   post 'playlist/:id' => 'playlists#add_to_playlist'
-  delete 'playlist/:id' => 'playlists#add_to_playlist'
-
+  delete 'playlist/:id' => 'playlists#remove_one_from_playlist'
+  delete 'playlist/:id/all' => 'playlists#remove_all_from_playlist'
 
   resources :main
   resources :users
@@ -57,3 +57,4 @@ Rails.application.routes.draw do
   #                     PUT    /playlist/:id(.:format)      playlist#update
   #                     DELETE /playlist/:id(.:format)      playlist#destroy
 end
+

@@ -62,7 +62,7 @@ class UsersController < ApplicationController
   # =============================
   def show
     @user = User.find(params[:id])
-    @playlist = @user.playlists
+    #@playlist = @user.playlists
     @this_user = "#{@user.first_name} #{@user.last_name}"
   end
 
@@ -74,7 +74,7 @@ class UsersController < ApplicationController
   def logout
     reset_session
     respond_to do |format|
-      format.html { redirect_to root_path, notice: 'User was successfully logged out.' }
+      format.html { redirect_to "/users/sw", notice: "#{current_user.first_name} was successfully logged out." }
       format.json { head :no_content }
     end
   end

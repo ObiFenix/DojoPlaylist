@@ -10,7 +10,7 @@ class SongsController < ApplicationController
   def create
     @new_song = Song.create(song_params)
     unless @new_song.valid?
-      flash[:errors] = @new_song.errors
+      flash[:errors] = @new_song.errors.full_messages
     end
     redirect_to "/songs"
   end

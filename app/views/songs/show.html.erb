@@ -4,7 +4,7 @@
 <nav class="dark" style="position:fixed; z-index:1000;">
   <div class="nav-wrapper">
     <% if current_user %>
-    <a href="/songs"><img src="/assets/codingdojo.png"</a>
+    <a href="/songs"><h4 class="_logo">DOJO<span>PLAYLIST</span></h2></a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
       <li><a href="/songs">Dashboard</a></li>
       <li>
@@ -16,27 +16,10 @@
 </nav>
 
 <!--
-[ Error Display... if any ]
--->
-<% if flash[:errors] %>
-<div id="error_explanation" class="container-error" style="margin-bottom:0;">
-    <h5>
-        <span class="blue-text"><%= pluralize(flash[:errors].count, "error") %></span>
-        prohibited this user from being saved:
-    </h5>
-    <ul>
-        <% flash[:errors].each do |message| %>
-        <li class="red-text"><span class="blue-text right-margin1">&#187;</span><%= message %></li>
-        <% end %>
-    </ul>
-</div>
-<% end %>
-
-<!--
 [ Main Container - Song Component ]
 -->
-<div class="container">
-  <div class="col s12 col-sm-12" style="margin-top:6rem;">
+<div class="container-info">
+  <div class="col s12">
     <h2>Others Who Added
       <span class="grey-text"><%= @this_song.artist %></span> -
       <span class="white-text"><%= @this_song.title %></span>
@@ -57,8 +40,8 @@
               <td><%= @this_song.users.where(email: key[2]).count %></td>
             </tr>
           <% end %>
-        </div>
-      </tbody>
-    </table>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

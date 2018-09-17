@@ -1,13 +1,11 @@
 <nav class="dark" style="position:fixed; z-index:1000;">
   <div class="nav-wrapper">
     <% if current_user %>
-    <a href="/songs"><img src="/assets/codingdojo.png"</a>
+    <a href="/songs"><h4 class="_logo">DOJO<span>PLAYLIST</span></h2></a>
+    <!--<a href="/songs"><h4 class="_logo"><user.first_name %><span>PLAYLIST</span></h2></a>-->
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a href="/users/<%= current_user.id %>"><span class="light-blue-text"><%= current_user.first_name %></span></a></li>
       <li><a href="/songs">Dashboard</a></li>
-      <li>
-        <%= link_to "Log out", "/logout", data: { method: :delete, confirm: "Are you sure?"} %>
-      </li>
+      <li><%= link_to "Log out", "/logout", data: { method: :delete, confirm: "Are you sure?"} %></li>
     </ul>
     <% end %>
   </div>
@@ -17,14 +15,24 @@
 
     <h2><span class="white-text"><%= @this_user %>'s</span> Playlist</h2>
 
-    <div class="scrolling-wrapper">
+    <div class="scrolling-wrapper-info">
       <table class="highlight">
           <thead>
+<<<<<<< HEAD
           <tr>
             <th class="theader">Artist     </th>
             <th class="theader">Title      </th>
             <th class="theader">Times Added</th>
             <th class="theader">Actions</th>
+=======
+          <tr class="trheader">
+            <th class="">Artist     </th>
+            <th class="">Title      </th>
+            <th class="">Times Added</th>
+            <% if current_user.id == @user.id %>
+	    <td class="">Actions    </td>
+             <% end %>
+>>>>>>> aff4c3a7a3536674ba2a4079c36f4f2cffb0378e
           </tr>
           </thead>
           <tbody>
@@ -32,6 +40,7 @@
             <tr class="trbody usr">
                 <td><%= key[0] %></td>
                 <td><%= key[1] %></td>
+<<<<<<< HEAD
                 <td><%= @user.songs_added.where(id: key[2]).count %></td>
                 <td>
                   <form action="/playlist/<%= song.id %>" method="post">
@@ -40,6 +49,23 @@
                     <input type="submit" value="Remove from Playlist" from playlist"" class="btn-small sn delete">
                   </form>
                 </td>
+=======
+                <td><%= value %></td>
+                <% if current_user.id == @user.id %>
+                <td>
+                  <form action="/playlist/<%= key[2] %>" method="post">
+                    <input type="hidden" name="_method" value="delete" />
+                    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+                    <input type="submit" value="Remove" from playlist"" class="btn-small delete-one">
+                  </form>
+                  <form id="delete_all" action="/playlist/<%= key[2] %>/all" method="post">
+                    <input type="hidden" name="_method" value="delete" />
+                    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
+                    <input type="submit" value="Remove All" from playlist"" class="btn-small delete-all">
+                  </form>
+                </td>
+                <% end %>
+>>>>>>> aff4c3a7a3536674ba2a4079c36f4f2cffb0378e
               </tr>
             <% end %>
           </tbody>

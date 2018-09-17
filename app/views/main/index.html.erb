@@ -1,4 +1,3 @@
-
 <!--
 [ USER LOGIN & REGISTRATION PAGE COMPONENT ]
 -->
@@ -7,11 +6,15 @@
 [ Error Display... if any ]
 -->
 <% if flash[:errors] %>
+<<<<<<< HEAD
 
 <div id="error_explanation" class="container-error" style="margin-bottom:0;">
+=======
+<div id="error_explanation" class="container-error-logreg" style="margin-bottom:0;">
+>>>>>>> aff4c3a7a3536674ba2a4079c36f4f2cffb0378e
   <h6>
-    <span class="blue-text"><%= pluralize(flash[:errors].count, "error") %></span>
-    prohibited this user from being saved:
+    <span class="blue-text"><%= pluralize(flash[:errors].count, "Error") %></span>
+    Prohibited This User From Being Validated:
   </h6>
   <ul>
     <% flash[:errors].each do |message| %>
@@ -26,7 +29,7 @@
 <!--
 [ Main Container - Login & Registration ]
 -->
-<div class="container">
+<div class="container-logreg">
   <!--
   [ Notification Activities ]
   -->
